@@ -1,0 +1,21 @@
+// Proposed fragment: merge inside /databases/{database}/documents.
+// Request creation, approval, inventory and return processing belong to trusted backend code.
+match /requests/{requestId} {
+  function ownsRequest() {
+    return request.auth != null && resource.data.uid == request.auth.uid;
+  }
+  allow read: if ownsRequest();
+  allow create, delete: if false;
+  allow update: if ownsRequest() && (
+    (resource.data.status == 'Approved'
+      && request.resource.data.status == 'Borrowed'
+      && request.resource.data.pickedUpAt == request.time
+      && request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['status', 'pickedUpAt']))
+    || (resource.data.status == 'Returned'
+      && request.resource.data.archived == true
+      && request.resource.data.archivedAt == request.time
+      && request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['archived', 'archivedAt']))
+  );
+}

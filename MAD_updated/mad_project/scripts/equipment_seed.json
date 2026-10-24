@@ -1,0 +1,1084 @@
+[
+  {
+    "id": "EQ-001",
+    "name": "ASUS 2026",
+    "category": "Laptop",
+    "description": "ASUS 2026 15 inch FHD IPS Chromebook, Intel Processor Up to 2.80GHz, 4GB DDR4, 128GB Storage, HDMI, Super-Fast WiFi, Chrome OS, Pastel Silver",
+    "imagePath": "assets/equipment/Asus.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Unavailable",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-002",
+    "name": "Acer Gateway Chromebook",
+    "category": "Laptop",
+    "description": "Acer Gateway Chromebook 11.6 inch HD Display, Intel Processor Up to 2.40GHz, 4GB DDR4, 32GB Storage, HDMI, WiFi, Chrome OS, Black",
+    "imagePath": "assets/equipment/Acer.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-003",
+    "name": "Lenovo Chromebook",
+    "category": "Laptop",
+    "description": "Lenovo Chromebook 11.6 inch HD Display, Intel Processor Up to 2.40GHz, 4GB DDR4, 32GB Storage, HDMI, WiFi, Chrome OS, Black",
+    "imagePath": "assets/equipment/Lenovo.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Unavailable",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-004",
+    "name": "Hp Stream",
+    "category": "Laptop",
+    "description": "Hp Stream 11.6 inch HD Display, Intel Processor Up to 2.40GHz, 4GB DDR4, 32GB Storage, HDMI, WiFi, Chrome OS, Black",
+    "imagePath": "assets/equipment/HP.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-005",
+    "name": "Dell",
+    "category": "Laptop",
+    "description": "Dell 15 inch FHD IPS Chromebook, Intel Processor Up to 2.80GHz, 4GB DDR4, 128GB Storage, HDMI, Super-Fast WiFi, Chrome OS, Pastel Silver",
+    "imagePath": "assets/equipment/Dell.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-006",
+    "name": "SanDisk Cruzer Blade 128GB",
+    "category": "Flash Drives",
+    "description": "SanDisk Cruzer Blade 128GB USB 3.0 Flash Drive",
+    "imagePath": "assets/equipment/Sandisk.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-007",
+    "name": "HKC USB 3.0 Flash Drive 32GB",
+    "category": "Flash Drives",
+    "description": "HKC USB 3.0 Flash Drive 32GB",
+    "imagePath": "assets/equipment/HKC.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-008",
+    "name": "Kingston USB Pendrive 8GB",
+    "category": "Flash Drives",
+    "description": "Kingston USB Pendrive 8GB",
+    "imagePath": "assets/equipment/Kingston.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-009",
+    "name": "2TB 2in1 USB 3.0 Flash Drive Type C",
+    "category": "Flash Drives",
+    "description": "2TB 2in1 USB 3.0 Flash Drive Type C",
+    "imagePath": "assets/equipment/2TB.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-010",
+    "name": "INPHIC F1",
+    "category": "Wireless Mouse",
+    "description": "INPHIC F1 Wireless Mouse Rechargeable 500mAh Adjustable 1600DPI Ergonomic Silent Clickable Mouse",
+    "imagePath": "assets/equipment/Inphic.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-011",
+    "name": "Zeus M220",
+    "category": "Wireless Mouse",
+    "description": "Zeus M220 Wireless Gaming Mouse / Office Mouse With Nano Receiver And A Free Battery",
+    "imagePath": "assets/equipment/Zeus.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-012",
+    "name": "Fantech Raigor WG10",
+    "category": "Wireless Mouse",
+    "description": "Fantech Raigor II WG10 Wireless Gaming Mouse 2000 DPI 2.4 Ghz Pro Gaming Mouse",
+    "imagePath": "assets/equipment/Fantech.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-013",
+    "name": "HP S4000",
+    "category": "Wireless Mouse",
+    "description": "HP Wireless Mouse S4000 Silent Portable Gaming Mouse USB Receiver 2.4GHz Adjustable DPI for Laptop PC Desktop",
+    "imagePath": "assets/equipment/HPMouse.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-014",
+    "name": "Inplay BK680",
+    "category": "Keyboards",
+    "description": "Inplay BK680 RGB Gaming Keyboard Rainbow Light Waterproof Smooth Membrane Keyboard",
+    "imagePath": "assets/equipment/Inplay.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-015",
+    "name": "Gigaware K550",
+    "category": "Keyboards",
+    "description": "Gigaware K550 87Key Mechanical Keyboard",
+    "imagePath": "assets/equipment/Gigaware.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-016",
+    "name": "Zeus K-55",
+    "category": "Keyboards",
+    "description": "Zeus K-55 RGB Gaming Keyboard 104 Keys Backlight Wired Mechanical Keyboard",
+    "imagePath": "assets/equipment/ZeusKeyboard.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-017",
+    "name": "INPLAY C1080PRO",
+    "category": "Webcams",
+    "description": "INPLAY C1080PRO USB Web Camera FHD 1080P Hi-Speed Build-in Mic Web Camera",
+    "imagePath": "assets/equipment/InplayWeb.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-018",
+    "name": "ICON 2k Video",
+    "category": "Webcams",
+    "description": "ICON 2k Video Web Camera",
+    "imagePath": "assets/equipment/Icon.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-019",
+    "name": "Rapow X801",
+    "category": "Webcams",
+    "description": "Rapow X801 Webcam Computer Camera Wired High Definition 1080P 2MP USB Built in Microphone",
+    "imagePath": "assets/equipment/Rapow.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-020",
+    "name": "A4Tech FK13M Fstyler",
+    "category": "Numeric Keypads",
+    "description": "A4Tech FK13M Fstyler Wired Numeric Keypad Micro USB",
+    "imagePath": "assets/equipment/A4TECH fk13m.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-021",
+    "name": "ROBOT RK01",
+    "category": "Numeric Keypads",
+    "description": "ROBOT RK01 Wired Numeric Keypad Black Original Small and Portable",
+    "imagePath": "assets/equipment/Robot .png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-022",
+    "name": "UGREEN Premium (1m)",
+    "category": "HDMI Cables",
+    "description": "UGREEN Premium HDMI Cable 1m 4K 60Hz High Speed HDMI Cable with Ethernet, Compatible with PS5, PS4, Xbox, TV, Monitor, Projector",
+    "imagePath": "assets/equipment/U1m.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-023",
+    "name": "UGREEN Premium (2m)",
+    "category": "HDMI Cables",
+    "description": "UGREEN Premium HDMI Cable 2m 4K 60Hz High Speed HDMI Cable with Ethernet, Compatible with PS5, PS4, Xbox, TV, Monitor, Projector",
+    "imagePath": "assets/equipment/U2m.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-024",
+    "name": "UGREEN Premium (3m)",
+    "category": "HDMI Cables",
+    "description": "UGREEN Premium HDMI Cable 3m 4K 60Hz High Speed HDMI Cable with Ethernet, Compatible with PS5, PS4, Xbox, TV, Monitor, Projector",
+    "imagePath": "assets/equipment/U3m.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-025",
+    "name": "UGREEN Premium (5m)",
+    "category": "HDMI Cables",
+    "description": "UGREEN Premium HDMI Cable 5m 4K 60Hz High Speed HDMI Cable with Ethernet, Compatible with PS5, PS4, Xbox, TV, Monitor, Projector",
+    "imagePath": "assets/equipment/U5m.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-026",
+    "name": "Extension outlets",
+    "category": "Extension Cords",
+    "description": "Extension Outlet Socket Plug With Switch Usb Cable Power Supply",
+    "imagePath": "assets/equipment/Extension.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-027",
+    "name": "Zeus Multi-Function",
+    "category": "Extension Cords",
+    "description": "Zeus Multi-Function Socket Extension Outlet with 4 Power Socket AND 2 USB Ports",
+    "imagePath": "assets/equipment/ZeusExt.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-028",
+    "name": "Mitsushi 3 Sockets",
+    "category": "Extension Cords",
+    "description": "Mitsushi Power Extension Outlets Charger Power Strip (3 Sockets)",
+    "imagePath": "assets/equipment/Mitsushi.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-029",
+    "name": "TRANYOO HB1-4 hub",
+    "category": "USB-to-Ethernet Adapter",
+    "description": "TRANYOO HB1-4 hub Type-C/USB to 4 USB and Ethernet Cable hub high-speed transmission",
+    "imagePath": "assets/equipment/Tranyoo.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-030",
+    "name": "Vention USB 3.0 2.0C",
+    "category": "USB-to-Ethernet Adapter",
+    "description": "Vention USB 3.0 2.0 C To Gigabit Ethernet Adapter Rj45 Network Card 1000mbps",
+    "imagePath": "assets/equipment/vention.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-031",
+    "name": "INPHIC USB 3.0 2.0C",
+    "category": "USB-to-Ethernet Adapter",
+    "description": "INPHIC USB 3.0 2.0C to Gigabit Ethernet adapter Rj45 network card 1000mbps laptop",
+    "imagePath": "assets/equipment/InphicUSB.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-032",
+    "name": "UGREEN 3M Cat6 UTP",
+    "category": "LAN Cables",
+    "description": "UGREEN 3M Cat6 UTP Network Cable Gigabit LAN Cord 250MHz Gold Connector (BLACK)",
+    "imagePath": "assets/equipment/Ugreen3mCat6.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-033",
+    "name": "UGREEN 5M Cat6 UTP",
+    "category": "LAN Cables",
+    "description": "UGREEN 5M Cat6 UTP Network Cable Gigabit LAN Cord 250MHz Gold Connector (Blue)",
+    "imagePath": "assets/equipment/Ugreen5mCat6.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-034",
+    "name": "UGREEN 10M Cat6 UTP",
+    "category": "LAN Cables",
+    "description": "UGREEN 10M Cat6 UTP Network Cable Gigabit LAN Cord 250MHz Gold Connector (Black)",
+    "imagePath": "assets/equipment/Ugreen 10mCat6.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-035",
+    "name": "Vention Presenter",
+    "category": "Presentation Clicker",
+    "description": "Vention Rechargeable Wireless Presenter Red/Green Laser Pointer 2.4GHz",
+    "imagePath": "assets/equipment/VentionClicker.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-036",
+    "name": "TYLEX XP60",
+    "category": "Presentation Clicker",
+    "description": "TYLEX XP60 Top Grade Business PPT Laser Pointer 2.4GHz Multi-OS Compatible Plug And Play",
+    "imagePath": "assets/equipment/TYLEX.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIS",
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-037",
+    "name": "Fantech Beat Pro GS306",
+    "category": "Speaker",
+    "description": "Fantech Beat Pro GS306 Gaming Speaker with Deep Bass Boost and RGB Lights",
+    "imagePath": "assets/equipment/FantechBeat.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-038",
+    "name": "Popcorn CS006",
+    "category": "Speaker",
+    "description": "Popcorn CS006 Mini Computer Speaker for PC RGB Soundbar Desktop Gaming Speaker Laptop",
+    "imagePath": "assets/equipment/popcorn.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-039",
+    "name": "Inplay MS003",
+    "category": "Speaker",
+    "description": "Inplay MS003 Mini RGB Speakers 3D Surround Shocking Bass Boost USB+3.5mm Port For Laptop",
+    "imagePath": "assets/equipment/Inplay MS003.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BLISS"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-040",
+    "name": "TP-Link LS1005",
+    "category": "Switches",
+    "description": "TP-Link LS1005 Switch (White)",
+    "imagePath": "assets/equipment/Ls1005.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-041",
+    "name": "TP-Link LS1005G",
+    "category": "Switches",
+    "description": "TP-Link LS1005G Switch (Black)",
+    "imagePath": "assets/equipment/Ls1005 G.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-042",
+    "name": "TP-Link LS105G",
+    "category": "Switches",
+    "description": "TP-Link LS105G Switch (Midgnight Blue)",
+    "imagePath": "assets/equipment/LS105G.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-043",
+    "name": "TP-Link LS1008",
+    "category": "Switches",
+    "description": "TP-Link LS1008 Switch (White)",
+    "imagePath": "assets/equipment/Ls1008.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-044",
+    "name": "Network Cable Tester",
+    "category": "LAN Cable Tester",
+    "description": "Network Cable Tester,Telephone Cable Wire Detection Equipment RJ45 RJ11 RJ12 CAT5 UTP",
+    "imagePath": "assets/equipment/CableTester.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-045",
+    "name": "ZoeRax",
+    "category": "LAN Cable Tester",
+    "description": "ZoeRax Network Ethernet Cable Tester for LAN RJ45 Cat5 Cat5e Cat6/6a/7 UTP/Shielded Cable",
+    "imagePath": "assets/equipment/ZoeRax.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-046",
+    "name": "ZoeRax USB Rechargeable",
+    "category": "LAN Cable Tester",
+    "description": "ZoeRax USB Rechargeable Network Cable Tester RJ45 RJ11 RJ12 LAN Tester with LED",
+    "imagePath": "assets/equipment/ZoeRaxUsb.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-047",
+    "name": "ArgoX",
+    "category": "Crimping Tool",
+    "description": "ArgoX Network Crimping Tool 4P+6P+8P - Wire Stripper for RJ45, RJ11, RJ12 Cables",
+    "imagePath": "assets/equipment/ArgoX.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-048",
+    "name": "UGREEN",
+    "category": "Crimping Tool",
+    "description": "UGREEN 3 in 1 Multifunctional Crimping Cutting Stripping Network Cable Pliers For Cat 6",
+    "imagePath": "assets/equipment/UgreenCrimp.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-049",
+    "name": "ZOERAX",
+    "category": "Crimping Tool",
+    "description": "ZOERAX RJ45 Crimping Tool Kit Pass Through Crimper for Cat6 Cat5e Ethernet Cable",
+    "imagePath": "assets/equipment/ZoeRax Crimp.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  },
+  {
+    "id": "EQ-050",
+    "name": "Vention",
+    "category": "Crimping Tool",
+    "description": "Vention Multifunctional 4P / 6P / 8P Crimping Tool w/ for RJ45 Lan Network Cable",
+    "imagePath": "assets/equipment/VentionCrimp.png",
+    "eligiblePrograms": [
+      "BSIT",
+      "BSIS",
+      "BLISS"
+    ],
+    "recommendedPrograms": [
+      "BSIT"
+    ],
+    "status": "Check availability",
+    "catalogStatus": "Available",
+    "totalQuantity": null,
+    "availableQuantity": null,
+    "inventoryVerified": false,
+    "isActive": true,
+    "source": "partNiRed catalog"
+  }
+]

@@ -1,0 +1,133 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function numberedRequestId(number) {
+      return 'BIT-' + (number < 10 ? '000' : number < 100 ? '00' : number < 1000 ? '0' : '') + string(number);
+    }
+    match /counters/requests {
+      allow get: if request.auth != null;
+      allow list, delete: if false;
+      function validCounter() {
+        let data = request.resource.data;
+        let id = data.lastRequestId;
+        let created = getAfter(/databases/$(database)/documents/requests/$(id)).data;
+        return request.auth != null
+          && data.keys().hasOnly(['lastNumber', 'lastRequestId'])
+          && data.lastNumber is int && data.lastNumber > 0
+          && id == numberedRequestId(data.lastNumber)
+          && !exists(/databases/$(database)/documents/requests/$(id))
+          && created.uid == request.auth.uid && created.createdAt == request.time
+          && created.status == 'Approved';
+      }
+      allow create: if validCounter() && request.resource.data.lastNumber == 1;
+      allow update: if validCounter() && request.resource.data.lastNumber == resource.data.lastNumber + 1;
+    }
+    match /requests/{requestId} {
+      function ownsRequest() {
+        return request.auth != null && resource.data.uid == request.auth.uid;
+      }
+      allow read: if ownsRequest();
+      function validNewRequest() {
+        let data = request.resource.data;
+        let equipment = get(/databases/$(database)/documents/equipment/$(data.equipmentId)).data;
+        return request.auth != null
+          && data.keys().hasAll(['uid', 'equipmentId', 'equipmentName', 'status',
+            'purpose', 'borrowAt', 'returnAt', 'createdAt', 'approvedAt', 'archived'])
+          && data.keys().hasOnly(['uid', 'equipmentId', 'equipmentName', 'status',
+            'purpose', 'borrowAt', 'returnAt', 'createdAt', 'approvedAt', 'archived'])
+          && data.uid == request.auth.uid
+          && getAfter(/databases/$(database)/documents/counters/requests).data.lastRequestId == requestId
+          && requestId == numberedRequestId(getAfter(/databases/$(database)/documents/counters/requests).data.lastNumber)
+          && data.equipmentId is string
+          && data.equipmentName == equipment.name
+          && equipment.isActive == true && equipment.inventoryVerified == true
+          && equipment.availableQuantity is int && equipment.availableQuantity > 0
+          && data.status == 'Approved' && data.archived == false
+          && data.approvedAt == request.time
+          && data.purpose is string && data.purpose.size() > 0 && data.purpose.size() <= 2000
+          && data.borrowAt is timestamp && data.returnAt is timestamp
+          && data.borrowAt > request.time && data.returnAt > data.borrowAt
+          && data.createdAt == request.time;
+      }
+      allow create: if validNewRequest();
+      allow delete: if false;
+      allow update: if ownsRequest() && (
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['readNotificationKeys'])
+          && request.resource.data.readNotificationKeys is list
+          && request.resource.data.readNotificationKeys.hasAll(resource.data.get('readNotificationKeys', []))
+          && request.resource.data.readNotificationKeys.hasOnly(['Request Approved', 'Pickup confirmed', 'Return schedule', 'Return reminder', 'Return overdue', 'Equipment returned']))
+        ||
+        ((resource.data.status == 'Approved' || resource.data.get('approvedAt', null) != null)
+          && request.resource.data.approvalReadAt == request.time
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['approvalReadAt']))
+        ||
+        (resource.data.status == 'Approved'
+          && request.resource.data.status == 'Borrowed'
+          && request.resource.data.pickedUpAt == request.time
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['status', 'pickedUpAt', 'conditionPhotoUrl'])
+          && request.resource.data.conditionPhotoUrl is string
+          && request.resource.data.conditionPhotoUrl.size() <= 750000)
+        || (resource.data.status == 'Borrowed'
+          && request.resource.data.status == 'Returned'
+          && request.resource.data.returnedAt == request.time
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['status', 'returnedAt', 'returnConditionPhotoUrl'])
+          && request.resource.data.returnConditionPhotoUrl is string
+          && request.resource.data.returnConditionPhotoUrl.size() <= 750000)
+        || (resource.data.status == 'Returned'
+          && request.resource.data.archived == true
+          && request.resource.data.archivedAt == request.time
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['archived', 'archivedAt']))
+      );
+    }
+    match /equipment/{equipmentId} {
+      function isAdmin() {
+        return request.auth != null && request.auth.token.get('admin', false) == true;
+      }
+      function validEquipment() {
+        let data = request.resource.data;
+        return data.name is string && data.name.size() > 0
+          && data.category is string && data.description is string
+          && data.imagePath is string && data.isActive is bool
+          && data.inventoryVerified is bool
+          && data.eligiblePrograms is list
+          && data.eligiblePrograms.hasOnly(['BSIT', 'BSIS', 'BLISS'])
+          && data.recommendedPrograms is list
+          && data.recommendedPrograms.hasOnly(['BSIT', 'BSIS', 'BLISS'])
+          && ((!data.inventoryVerified && data.totalQuantity == null && data.availableQuantity == null)
+            || (data.totalQuantity is int && data.availableQuantity is int
+              && data.totalQuantity >= 0 && data.availableQuantity >= 0
+              && data.availableQuantity <= data.totalQuantity));
+      }
+      allow read: if request.auth != null;
+      allow create, update: if isAdmin() && validEquipment();
+      allow delete: if isAdmin();
+    }
+    match /users/{studentId} {
+      function signedIn() { return request.auth != null; }
+      function ownsExisting() {
+        return signedIn() &&
+          (resource.data.get('uid', '') == request.auth.uid ||
+           studentId == request.auth.uid);
+      }
+      function validProfile() {
+        return signedIn()
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.studentNumber == studentId
+          && request.resource.data.email == request.auth.token.email
+          && request.resource.data.role == 'student';
+      }
+      // Transactions must be able to check whether a student number is taken.
+      allow get: if signedIn() &&
+        (!exists(/databases/$(database)/documents/users/$(studentId)) ||
+         ownsExisting());
+      allow list: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if validProfile();
+      allow update: if ownsExisting() && validProfile();
+      // Allows moving one's legacy profile to the student-number document.
+      allow delete: if ownsExisting();
+    }
+  }
+}

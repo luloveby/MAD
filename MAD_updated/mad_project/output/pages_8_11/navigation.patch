@@ -1,0 +1,46 @@
+--- a/lib/widgets/app_navigation_bar.dart
++++ b/lib/widgets/app_navigation_bar.dart
+@@ -1,11 +1,21 @@
+ import 'package:flutter/material.dart';
+ 
+ import '../home_page.dart';
++import '../pages/user_requests_page.dart';
+ import '../pages/borrow_it_screen.dart';
+ 
+ class AppNavigation {
+   static const home = '/home';
+   static const equipment = '/equipment';
++  static const requests = '/requests';
++
++  static void openRequests(BuildContext context) {
++    if (ModalRoute.of(context)?.settings.name == requests) return;
++    Navigator.of(context).push(MaterialPageRoute<void>(
++      settings: const RouteSettings(name: requests),
++      builder: (_) => const UserRequestsPage(),
++    ));
++  }
+ 
+   static void openHome(BuildContext context) {
+     final navigator = Navigator.of(context);
+@@ -61,9 +71,7 @@
+       } else if (index == 1) {
+         AppNavigation.openEquipment(context);
+       } else {
+-        ScaffoldMessenger.of(context).showSnackBar(
+-          const SnackBar(content: Text('Requests are coming soon.')),
+-        );
++        AppNavigation.openRequests(context);
+       }
+     },
+     items: const [
+--- a/lib/widgets/main_drawer.dart
++++ b/lib/widgets/main_drawer.dart
+@@ -112,7 +112,7 @@
+             menuItem(
+               icon: Icons.touch_app,
+               title: 'Requests',
+-              onTap: () => showComingSoon(context, 'Requests'),
++              onTap: () => navigate(context, AppNavigation.openRequests),
+             ),
+ 
+             // NOTIFICATIONS
