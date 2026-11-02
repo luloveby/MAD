@@ -64,17 +64,23 @@ service cloud.firestore {
         (resource.data.status == 'Approved'
           && request.resource.data.status == 'Borrowed'
           && request.resource.data.pickedUpAt == request.time
+          && request.resource.data.inventoryUpdated == true
           && request.resource.data.diff(resource.data).affectedKeys()
-            .hasOnly(['status', 'pickedUpAt', 'conditionPhotoUrl'])
+            .hasOnly(['status', 'pickedUpAt', 'conditionPhotoUrl', 'inventoryUpdated'])
           && request.resource.data.conditionPhotoUrl is string
-          && request.resource.data.conditionPhotoUrl.size() <= 750000)
+          && request.resource.data.conditionPhotoUrl.size() <= 750000
+          && getAfter(/databases/$(database)/documents/equipment/$(resource.data.equipmentId)).data.availableQuantity
+            == get(/databases/$(database)/documents/equipment/$(resource.data.equipmentId)).data.availableQuantity - 1)
         || (resource.data.status == 'Borrowed'
           && request.resource.data.status == 'Returned'
           && request.resource.data.returnedAt == request.time
           && request.resource.data.diff(resource.data).affectedKeys()
             .hasOnly(['status', 'returnedAt', 'returnConditionPhotoUrl'])
           && request.resource.data.returnConditionPhotoUrl is string
-          && request.resource.data.returnConditionPhotoUrl.size() <= 750000)
+          && request.resource.data.returnConditionPhotoUrl.size() <= 750000
+          && (resource.data.get('inventoryUpdated', false) != true
+            || getAfter(/databases/$(database)/documents/equipment/$(resource.data.equipmentId)).data.availableQuantity
+              == get(/databases/$(database)/documents/equipment/$(resource.data.equipmentId)).data.availableQuantity + 1))
         || (resource.data.status == 'Returned'
           && request.resource.data.archived == true
           && request.resource.data.archivedAt == request.time
@@ -101,8 +107,35 @@ service cloud.firestore {
               && data.totalQuantity >= 0 && data.availableQuantity >= 0
               && data.availableQuantity <= data.totalQuantity));
       }
+      function validBorrowerAvailabilityChange(equipmentId) {
+        let data = request.resource.data;
+        let requestPath = /databases/$(database)/documents/requests/$(data.lastAvailabilityRequestId);
+        let previousRequest = get(requestPath).data;
+        let updatedRequest = getAfter(requestPath).data;
+        return request.auth != null
+          && data.lastAvailabilityRequestId is string
+          && data.lastAvailabilityAction is string
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['availableQuantity', 'lastAvailabilityRequestId', 'lastAvailabilityAction'])
+          && previousRequest.uid == request.auth.uid
+          && updatedRequest.uid == request.auth.uid
+          && previousRequest.equipmentId == equipmentId
+          && updatedRequest.equipmentId == equipmentId
+          && ((data.lastAvailabilityAction == 'borrow'
+              && previousRequest.status == 'Approved'
+              && updatedRequest.status == 'Borrowed'
+              && updatedRequest.inventoryUpdated == true
+              && data.availableQuantity == resource.data.availableQuantity - 1)
+            || (data.lastAvailabilityAction == 'return'
+              && previousRequest.status == 'Borrowed'
+              && previousRequest.get('inventoryUpdated', false) == true
+              && updatedRequest.status == 'Returned'
+              && data.availableQuantity == resource.data.availableQuantity + 1));
+      }
       allow read: if request.auth != null;
-      allow create, update: if isAdmin() && validEquipment();
+      allow create: if isAdmin() && validEquipment();
+      allow update: if validEquipment() &&
+        (isAdmin() || validBorrowerAvailabilityChange(equipmentId));
       allow delete: if isAdmin();
     }
     match /users/{studentId} {

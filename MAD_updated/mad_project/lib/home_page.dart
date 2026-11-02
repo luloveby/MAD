@@ -1,8 +1,12 @@
 import 'widgets/equipment_scope.dart';
 import 'models/equipment_item.dart';
+import 'models/borrow_request.dart';
 
 import 'pages/equipment_details_page.dart';
+import 'pages/request_details_page.dart';
 import 'widgets/notification_bell.dart';
+import 'widgets/request_scope.dart';
+import 'widgets/request_widgets.dart';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,11 +33,13 @@ class _HomePageState extends State<HomePage> {
   late final Stream<DocumentSnapshot<Map<String, dynamic>>> profileStream;
 
   Stream<List<EquipmentItem>>? equipmentStream;
+  Stream<List<BorrowRequest>>? requestStream;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     equipmentStream ??= EquipmentScope.watchOf(context);
+    requestStream ??= RequestScope.watchOf(context);
   }
 
   String selectedCategory = 'All';
@@ -156,11 +162,9 @@ class _HomePageState extends State<HomePage> {
                   width: 170,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(15),
-                    onTap: () => Navigator.push(
+                    onTap: () => AppNavigation.pushWithTransition(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => EquipmentDetailsPage(item: item),
-                      ),
+                      EquipmentDetailsPage(item: item),
                     ),
                     child: equipmentCard({
                       'name': item.name,
@@ -271,7 +275,15 @@ class _HomePageState extends State<HomePage> {
     String firstName,
     String program,
     List<EquipmentItem> catalog,
+    List<BorrowRequest> requests,
   ) {
+    final activeRequests = requests
+        .where(
+          (request) =>
+              !request.archived &&
+              (request.status == 'Approved' || request.status == 'Borrowed'),
+        )
+        .toList();
     return Column(
       children: [
         // SCROLLABLE BODY
@@ -452,20 +464,36 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF9FFC7),
-                    border: Border.all(color: orange),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const Text(
-                    'No active borrowings yet.',
-                    style: TextStyle(fontSize: 13, color: Color(0xFF444444)),
-                  ),
-                ),
+                if (activeRequests.isEmpty)
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9FFC7),
+                      border: Border.all(color: orange),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Text(
+                      'No active borrowings yet.',
+                      style: TextStyle(fontSize: 13, color: Color(0xFF444444)),
+                    ),
+                  )
+                else
+                  for (final request in activeRequests)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: RequestCard(
+                        request: request,
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (_) =>
+                                RequestDetailsPage(requestId: request.id),
+                          ),
+                        ),
+                      ),
+                    ),
 
                 const SizedBox(height: 28),
               ],
@@ -528,10 +556,26 @@ class _HomePageState extends State<HomePage> {
               if (!equipmentSnapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
               }
-              return buildHome(
-                firstName,
-                program.isEmpty ? 'Students' : program,
-                equipmentSnapshot.data!,
+              return StreamBuilder<List<BorrowRequest>>(
+                stream: requestStream,
+                builder: (context, requestSnapshot) {
+                  if (requestSnapshot.hasError) {
+                    return const Center(
+                      child: Text('Unable to load active borrowings.'),
+                    );
+                  }
+                  if (!requestSnapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(color: orange),
+                    );
+                  }
+                  return buildHome(
+                    firstName,
+                    program.isEmpty ? 'Students' : program,
+                    equipmentSnapshot.data!,
+                    requestSnapshot.data!,
+                  );
+                },
               );
             },
           ),

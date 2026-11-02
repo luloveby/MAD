@@ -8,6 +8,7 @@ class CustomDialog extends StatelessWidget {
   final bool showCancel;
   final String cancelText;
   final VoidCallback? onCancel;
+  final bool large;
 
   const CustomDialog({
     super.key,
@@ -18,6 +19,7 @@ class CustomDialog extends StatelessWidget {
     this.showCancel = false,
     this.cancelText = 'Cancel',
     this.onCancel,
+    this.large = false,
   });
 
   @override
@@ -25,9 +27,9 @@ class CustomDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      insetPadding: const EdgeInsets.symmetric(horizontal: 35),
+      insetPadding: EdgeInsets.symmetric(horizontal: large ? 20 : 35),
       child: Container(
-        width: 340,
+        width: large ? 380 : 340,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(9),
           gradient: const LinearGradient(
@@ -41,7 +43,7 @@ class CustomDialog extends StatelessWidget {
           children: [
             // BLACK HEADER
             Container(
-              height: 45,
+              height: large ? 56 : 45,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: const BoxDecoration(
                 color: Color(0xFF202020),
@@ -52,9 +54,9 @@ class CustomDialog extends StatelessWidget {
                   Expanded(
                     child: Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: large ? 17 : 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -79,19 +81,28 @@ class CustomDialog extends StatelessWidget {
                 children: [
                   Text(
                     message,
-                    style: const TextStyle(color: Colors.white, fontSize: 13),
+                    textAlign: large ? TextAlign.center : TextAlign.start,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: large ? 18 : 13,
+                      height: large ? 1.35 : null,
+                    ),
                   ),
 
-                  const SizedBox(height: 45),
+                  SizedBox(height: large ? 32 : 45),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       if (showCancel) ...[
-                        _dialogButton(cancelText, onCancel ?? () => Navigator.pop(context)),
+                        _dialogButton(
+                          cancelText,
+                          onCancel ?? () => Navigator.pop(context),
+                          large: large,
+                        ),
                         const SizedBox(width: 7),
                       ],
-                      _dialogButton(confirmText, onConfirm),
+                      _dialogButton(confirmText, onConfirm, large: large),
                     ],
                   ),
                 ],
@@ -103,10 +114,14 @@ class CustomDialog extends StatelessWidget {
     );
   }
 
-  Widget _dialogButton(String text, VoidCallback onPressed) {
+  Widget _dialogButton(
+    String text,
+    VoidCallback onPressed, {
+    bool large = false,
+  }) {
     return SizedBox(
-      width: 76,
-      height: 27,
+      width: large ? 92 : 76,
+      height: large ? 38 : 27,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -117,7 +132,7 @@ class CustomDialog extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: large ? 13 : 11, fontWeight: FontWeight.bold),
         ),
       ),
     );

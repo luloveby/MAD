@@ -10,12 +10,16 @@ class BorrowingHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => RequestContent(
     builder: (context, requests) {
-      final returned = requests
-          .where((r) => r.status == 'Returned' && !r.archived)
+      final history = requests
+          .where(
+            (r) =>
+                const {'Approved', 'Borrowed', 'Returned'}.contains(r.status) &&
+                !r.archived,
+          )
           .toList();
       return TransactionLayout(
         title: 'Borrowing History',
-        subtitle: 'Your completed transactions',
+        subtitle: 'Your approved, active, and completed borrowings',
         action: IconButton(
           tooltip: 'Archive',
           onPressed: () => Navigator.push(
@@ -25,8 +29,9 @@ class BorrowingHistoryPage extends StatelessWidget {
           icon: const Icon(Icons.archive_outlined),
         ),
         children: [
-          if (returned.isEmpty) const Text('No completed transactions.'),
-          for (final request in returned)
+          if (history.isEmpty)
+            const Text('No approved or completed borrowings yet.'),
+          for (final request in history)
             TransactionCard(
               request: request,
               onTap: () => Navigator.push(

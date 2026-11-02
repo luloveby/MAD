@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
   static const orange = Color(0xFFFF692B);
   bool isPasswordHidden = true;
   bool isLoggingIn = false;
+  String? passwordAuthError;
 
   @override
   void dispose() {
@@ -76,9 +77,21 @@ class _LoginPageState extends State<LoginPage> {
 
         if (!mounted) return;
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please verify your email before logging in.'),
+        await showDialog<void>(
+          context: context,
+          builder: (dialogContext) => AlertDialog(
+            title: const Text('Email Not Verified'),
+            content: const Text(
+              'You need to verify your email first. Check your inbox and '
+              'Spam/Junk folder, then tap the verification link before '
+              'logging in.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: const Text('OK'),
+              ),
+            ],
           ),
         );
         return;
@@ -103,7 +116,9 @@ class _LoginPageState extends State<LoginPage> {
       } else if (e.code == 'invalid-credential' ||
           e.code == 'wrong-password' ||
           e.code == 'user-not-found') {
-        message = 'Incorrect email or password.';
+        setState(() => passwordAuthError = 'Incorrect password');
+        formKey.currentState!.validate();
+        return;
       } else if (e.code == 'too-many-requests') {
         message = 'Too many attempts. Please try again later.';
       } else if (e.code == 'network-request-failed') {
@@ -223,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 10,
                           letterSpacing: 1.5,
-                          color: Colors.grey,
+                          color: Color(0xFF555555),
                         ),
                       ),
 
@@ -255,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 10,
                           letterSpacing: 1.5,
-                          color: Colors.grey,
+                          color: Color(0xFF555555),
                         ),
                       ),
 
@@ -266,6 +281,11 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                         textInputAction: TextInputAction.done,
                         obscureText: isPasswordHidden,
+                        onChanged: (_) {
+                          if (passwordAuthError != null) {
+                            setState(() => passwordAuthError = null);
+                          }
+                        },
                         style: const TextStyle(fontSize: 16),
                         decoration: fieldDecoration(
                           'Enter your password',
@@ -292,7 +312,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your password';
                           }
-                          return null;
+                          return passwordAuthError;
                         },
                       ),
 

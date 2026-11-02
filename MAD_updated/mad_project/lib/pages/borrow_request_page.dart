@@ -38,21 +38,26 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
     return minutes < 8 * 60 || minutes > 17 * 60;
   }
 
+  DateTime _skipSunday(DateTime value) {
+    return value.weekday == DateTime.sunday
+        ? value.add(const Duration(days: 1))
+        : value;
+  }
+
   @override
   void initState() {
     super.initState();
     final now = PhilippineTime.wallClock(DateTime.now());
-    _needed = PhilippineTime.fromWallClock(
-      now.year,
-      now.month,
-      now.day + 1,
-      10,
+    _needed = _skipSunday(
+      PhilippineTime.fromWallClock(now.year, now.month, now.day + 1, 10),
     );
-    _return = PhilippineTime.fromWallClock(
-      now.year,
-      now.month,
-      now.day + 2,
-      15,
+    _return = _skipSunday(
+      PhilippineTime.fromWallClock(
+        _needed.year,
+        _needed.month,
+        _needed.day + 1,
+        15,
+      ),
     );
   }
 
@@ -85,12 +90,14 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
       final first = DateTime(now.year, now.month, now.day);
       final selected = await showDatePicker(
         context: context,
-        initialDate:
-            DateTime(value.year, value.month, value.day).isBefore(first)
-            ? first
-            : DateTime(value.year, value.month, value.day),
+        initialDate: _skipSunday(
+          DateTime(value.year, value.month, value.day).isBefore(first)
+              ? first
+              : DateTime(value.year, value.month, value.day),
+        ),
         firstDate: first,
         lastDate: DateTime(now.year + 5, 12, 31),
+        selectableDayPredicate: (date) => date.weekday != DateTime.sunday,
       );
       if (selected != null) {
         result = PhilippineTime.fromWallClock(
@@ -129,6 +136,13 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
           : null;
     });
     if (_scheduleError != null) {
+      // Show the return-order error beside its date field so the user can fix
+      // it directly, without opening an unrelated time picker.
+      if ((!_needed.isAfter(DateTime.now()) || !_return.isAfter(_needed)) &&
+          !invalidNeededTime &&
+          !invalidReturnTime) {
+        return;
+      }
       showDialog<bool>(
         context: context,
         builder: (_) => InvalidTimeRequestDialog(message: _scheduleError!),
@@ -201,12 +215,15 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
     bool time = false,
   }) {
     final hasError =
-        time &&
         _scheduleValidated &&
-        (_outsideHours(value) ||
-            (returnDate
-                ? !_return.isAfter(_needed)
-                : !_needed.isAfter(DateTime.now())));
+        (time
+            ? _outsideHours(value) ||
+                  (returnDate
+                      ? !_return.isAfter(_needed)
+                      : !_needed.isAfter(DateTime.now()))
+            : returnDate
+            ? !_return.isAfter(_needed)
+            : !_needed.isAfter(DateTime.now()));
     final outline = OutlineInputBorder(
       borderRadius: BorderRadius.circular(6),
       borderSide: BorderSide(
@@ -249,6 +266,22 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
               child: Text(text),
             ),
           ),
+          if (hasError && returnDate && !time)
+            const Padding(
+              padding: EdgeInsets.only(top: 6, left: 2),
+              child: Text(
+                'Expected return date and time must be after the borrowing date and time.',
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            ),
+          if (hasError && !returnDate && !time)
+            const Padding(
+              padding: EdgeInsets.only(top: 6, left: 2),
+              child: Text(
+                'Choose a future borrowing date and time.',
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            ),
         ],
       ),
     );

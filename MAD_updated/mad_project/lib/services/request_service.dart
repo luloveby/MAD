@@ -168,9 +168,30 @@ class RequestService {
       if (data['status'] != 'Approved') {
         throw StateError('Only approved requests can be picked up.');
       }
+      final equipmentRef = _db
+          .collection('equipment')
+          .doc(data['equipmentId'] as String);
+      final equipmentSnapshot = await transaction.get(equipmentRef);
+      final equipment = equipmentSnapshot.data();
+      final available = equipment?['availableQuantity'];
+      final total = equipment?['totalQuantity'];
+      if (equipment == null ||
+          equipment['inventoryVerified'] != true ||
+          available is! int ||
+          total is! int ||
+          available <= 0 ||
+          available > total) {
+        throw StateError('This equipment is currently unavailable.');
+      }
+      transaction.update(equipmentRef, {
+        'availableQuantity': available - 1,
+        'lastAvailabilityRequestId': id,
+        'lastAvailabilityAction': 'borrow',
+      });
       transaction.update(ref, {
         'status': 'Borrowed',
         'pickedUpAt': FieldValue.serverTimestamp(),
+        'inventoryUpdated': true,
         if (conditionPhotoUrl != null) 'conditionPhotoUrl': conditionPhotoUrl,
       });
     });
@@ -191,6 +212,30 @@ class RequestService {
       if (data['status'] == 'Returned') return;
       if (data['status'] != 'Borrowed') {
         throw StateError('Only borrowed requests can be returned.');
+      }
+      final inventoryWasUpdated = data['inventoryUpdated'] == true;
+      DocumentReference<Map<String, dynamic>>? equipmentRef;
+      if (inventoryWasUpdated) {
+        equipmentRef = _db
+            .collection('equipment')
+            .doc(data['equipmentId'] as String);
+        final equipmentSnapshot = await transaction.get(equipmentRef);
+        final equipment = equipmentSnapshot.data();
+        final available = equipment?['availableQuantity'];
+        final total = equipment?['totalQuantity'];
+        if (equipment == null ||
+            equipment['inventoryVerified'] != true ||
+            available is! int ||
+            total is! int ||
+            available < 0 ||
+            available >= total) {
+          throw StateError('Equipment availability could not be restored.');
+        }
+        transaction.update(equipmentRef, {
+          'availableQuantity': available + 1,
+          'lastAvailabilityRequestId': id,
+          'lastAvailabilityAction': 'return',
+        });
       }
       transaction.update(ref, {
         'status': 'Returned',

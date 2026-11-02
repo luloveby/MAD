@@ -9,11 +9,46 @@ class AppNavigation {
   static const equipment = '/equipment';
   static const requests = '/requests';
 
+  static PageRoute<T> _slideRoute<T>({
+    RouteSettings? settings,
+    required WidgetBuilder builder,
+  }) {
+    return PageRouteBuilder<T>(
+      settings: settings,
+      transitionDuration: const Duration(milliseconds: 180),
+      reverseTransitionDuration: const Duration(milliseconds: 160),
+      pageBuilder: (context, animation, secondaryAnimation) => builder(context),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final slide = Tween<Offset>(
+          begin: const Offset(0.04, 0),
+          end: Offset.zero,
+        ).chain(CurveTween(curve: Curves.easeOutCubic));
+        return SlideTransition(
+          position: animation.drive(slide),
+          child: child,
+        );
+      },
+    );
+  }
+
+  static Future<T?> pushWithTransition<T>(BuildContext context, Widget page) {
+    return Navigator.of(context).push<T>(
+      _slideRoute<T>(builder: (_) => page),
+    );
+  }
+
+  static PageRoute<void> _tabRoute({
+    required String name,
+    required WidgetBuilder builder,
+  }) {
+    return _slideRoute<void>(settings: RouteSettings(name: name), builder: builder);
+  }
+
   static void openRequests(BuildContext context) {
     if (ModalRoute.of(context)?.settings.name == requests) return;
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        settings: const RouteSettings(name: requests),
+      _tabRoute(
+        name: requests,
         builder: (_) => const UserRequestsPage(),
       ),
     );
@@ -28,8 +63,8 @@ class AppNavigation {
     });
     if (!foundHome) {
       navigator.pushReplacement(
-        MaterialPageRoute<void>(
-          settings: const RouteSettings(name: home),
+        _tabRoute(
+          name: home,
           builder: (_) => const HomePage(),
         ),
       );
@@ -46,8 +81,8 @@ class AppNavigation {
     });
     if (foundEquipment) return;
     navigator.push(
-      MaterialPageRoute<void>(
-        settings: const RouteSettings(name: equipment),
+      _tabRoute(
+        name: equipment,
         builder: (_) => const BorrowItScreen(),
       ),
     );

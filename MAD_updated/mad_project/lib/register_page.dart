@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'services/auth_service.dart';
@@ -74,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
         style: const TextStyle(
           fontSize: 10,
           letterSpacing: 1.3,
-          color: Colors.grey,
+          color: Color(0xFF555555),
         ),
       ),
     );
@@ -85,6 +86,8 @@ class _RegisterPageState extends State<RegisterPage> {
     String hint,
     TextEditingController controller, {
     TextInputType? keyboardType,
+    List<TextInputFormatter>? inputFormatters,
+    String? Function(String?)? validator,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,8 +96,9 @@ class _RegisterPageState extends State<RegisterPage> {
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
+          inputFormatters: inputFormatters,
           decoration: fieldDecoration(hint),
-          validator: (value) {
+          validator: validator ?? (value) {
             if (value == null || value.trim().isEmpty) {
               return 'Please enter your $label';
             }
@@ -128,10 +132,11 @@ class _RegisterPageState extends State<RegisterPage> {
       await showDialog<void>(
         context: context,
         builder: (dialogContext) => AlertDialog(
-          title: const Text('Registration Successful'),
-          content: const Text(
-            'Your account has been created. '
-            'Please verify your email before logging in.',
+          title: const Text('Verification Email Sent'),
+          content: Text(
+            'A verification link was sent to ${emailController.text.trim()}. '
+            'Check your inbox and Spam/Junk folder, then tap the link before '
+            'logging in.',
           ),
           actions: [
             TextButton(
@@ -276,6 +281,17 @@ class _RegisterPageState extends State<RegisterPage> {
                           'Enter your contact number',
                           contactController,
                           keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(11),
+                          ],
+                          validator: (value) {
+                            if (value == null ||
+                                !RegExp(r'^\d{11}$').hasMatch(value.trim())) {
+                              return 'Contact number must contain exactly 11 digits';
+                            }
+                            return null;
+                          },
                         ),
 
                         // COLLEGE PROGRAM

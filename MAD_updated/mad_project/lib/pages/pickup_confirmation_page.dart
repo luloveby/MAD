@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import '../dialog.dart';
 
@@ -75,6 +76,7 @@ class _PickupConfirmationPageState extends State<PickupConfirmationPage> {
         builder: (context) => CustomDialog(
           title: 'Confirmation',
           message: 'Thank you for confirming!',
+          large: true,
           showCancel: true,
           cancelText: 'View Details',
           onCancel: () => Navigator.pop(context, true),
@@ -91,6 +93,26 @@ class _PickupConfirmationPageState extends State<PickupConfirmationPage> {
               : const UserRequestsPage(),
         ),
       );
+    } on StateError catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message.toString()),
+          ),
+        );
+      }
+    } on FirebaseException catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              error.code == 'permission-denied'
+                  ? 'Pickup was blocked by Firebase rules. Deploy the latest firestore.rules file and try again.'
+                  : 'Unable to confirm pickup (${error.code}). Please try again.',
+            ),
+          ),
+        );
+      }
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
